@@ -1,4 +1,3 @@
-
 buildscript {
     repositories {
         google()
@@ -12,13 +11,18 @@ buildscript {
 
 apply plugin: 'com.android.library'
 
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+
 android {
-    compileSdkVersion 28
+    compileSdkVersion safeExtGet("usbSerialPortCompiledSdkVersion", 28)
     buildToolsVersion "28.0.3"
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion safeExtGet("usbSerialPortMinSdkVersion", 16)
+        targetSdkVersion safeExtGet("usbSerialPortTargetSdkVersion", 28)
         versionCode 1
         versionName "1.0"
     }
@@ -32,7 +36,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'com.google.guava:guava:31.1-jre'
     implementation 'com.facebook.react:react-native:+'
-    implementation fileTree(dir: 'libs', include: ['usbserial-6.0.5-release.aar'])
+    implementation 'com.github.felHR85:UsbSerial:6.1.0'
+
 }
