@@ -38,6 +38,5 @@ repositories {
 dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.github.felhr85:UsbSerial:6.1.0'
-
+    implementation 'com.github.felhr85:usbserial:6.1.0'
 }
